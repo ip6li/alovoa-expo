@@ -4,6 +4,7 @@
     "privacy-policy": "Privacy Policy",
     "auth": {
         "email": "Sign in",
+        "oidc": "Sign in with OpenID/Connect",
         "google": "Sign in with Google",
         "facebook": "Sign in with Facebook"
     },
@@ -223,7 +224,7 @@
     "restart-apply-changes": "Restart the app to apply changes",
     "compliment": {
         "title": "Send a compliment",
-        "tooltip": "Tap here to send a compliment!" 
+        "tooltip": "Tap here to send a compliment!"
     },
     "referral": {
         "title": "Recommend to a friend",

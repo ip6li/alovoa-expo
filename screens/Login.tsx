@@ -67,6 +67,17 @@ const Login = () => {
     setTimeout(() => setLoading(false), 200);
   };
 
+  const loginOidc = async () => {
+    let e = Linking.addEventListener('url', _handleRedirect);
+    let res = await WebBrowser.openAuthSessionAsync(URL.AUTH_OIDC + "/" + Buffer.from(APP_URL).toString('base64'));
+    e.remove();
+
+    //_handleRedirect does not work on iOS and web, get url directly from WebBrowser.openAuthSessionAsync result instead
+    if ((Platform.OS === 'ios' || Platform.OS === 'web') && res.type == "success" && res.url) {
+      _handleRedirect({ url: res.url });
+    }
+  };
+
   const loginGoogle = async () => {
     let e = Linking.addEventListener('url', _handleRedirect);
     let res = await WebBrowser.openAuthSessionAsync(URL.AUTH_GOOGLE + "/" + Buffer.from(APP_URL).toString('base64'));
@@ -148,6 +159,9 @@ const Login = () => {
       margin: 4,
       flexDirection: 'row'
     },
+    buttonOidc: {
+      backgroundColor: '#4285f4',
+    },
     buttonGoogle: {
       backgroundColor: '#4285f4',
     },
@@ -196,16 +210,11 @@ const Login = () => {
 
             <View style={{ paddingBottom: 38 }}></View>
 
-            <Button icon="google" mode="contained" style={[style.buttonGoogle]}
-              onPress={() => {
-                loginGoogle();
-              }}
-            ><Text style={style.buttonText}>{i18n.t('auth.google')}</Text></Button>
-            <Button icon="facebook" mode="contained" style={[style.buttonFacebook, { marginTop: 8 }]}
-              onPress={() => {
-                loginFacebook();
-              }}
-            ><Text style={style.buttonText}>{i18n.t('auth.facebook')}</Text></Button>
+            <Button icon="email" mode="contained" style={[style.buttonOidc]}
+                    onPress={() => {
+                      loginOidc();
+                    }}
+            ><Text style={style.buttonText}>{i18n.t('auth.oidc')}</Text></Button>
           </View>
 
           <View style={{ marginTop: 64 }}>

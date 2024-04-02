@@ -4,6 +4,7 @@
     "privacy-policy": "Datenschutzerklärung",
     "auth": {
         "email": "Anmelden",
+        "oidc": "Mit OpenID/Connect anmelden",
         "google": "Mit Google anmelden",
         "facebook": "Mit Facebook anmelden"
     },
@@ -224,7 +225,7 @@
     "restart-apply-changes": "Starte die App neu um die Änderungen zu übernehmen",
     "compliment": {
         "title": "Kompliment senden",
-        "tooltip": "Hier tippen, um ein Kompliment zu senden!" 
+        "tooltip": "Hier tippen, um ein Kompliment zu senden!"
     },
     "referral": {
         "title": "Einem Freund weiterempfehlen",
